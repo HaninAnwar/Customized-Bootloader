@@ -41,7 +41,7 @@ typedef struct
 {
 	uint32_t BaseAddress;
 	Flash_Parallelism Parallelism;
-	uint64_t Data;
+	uint8_t Data;
 
 }Flash_Write_TypeDef;
 

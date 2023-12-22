@@ -282,7 +282,6 @@ void BL_voidHandle_GetHelpCmd(uint8_t *Copy_pu8CmdPckt)
 
 	if(Local_u8CRCStatus == CRC_SUCCESS)
 	{
-		voidSendACK(1u);
 
 
 		uint8_t Local_pu8BL_Commands[] =
@@ -300,6 +299,8 @@ void BL_voidHandle_GetHelpCmd(uint8_t *Copy_pu8CmdPckt)
 				BL_OTP_READ           ,
 				BL_DIS_RW_PROTECT     ,
 		};
+
+		voidSendACK(sizeof(Local_pu8BL_Commands));
 
 		/* Send all supported commands*/
 		MUSART_u8TransmitArraySynch(BL_USART_NUM, Local_pu8BL_Commands, sizeof(Local_pu8BL_Commands));
@@ -330,6 +331,7 @@ void BL_voidHandle_GetCIDCmd(uint8_t *Copy_pu8CmdPckt)
 		voidSendACK(2u);
 
 		uint16_t Local_u16DeviceID;
+
 		/*Get the Device ID*/
 		Local_u16DeviceID = DBGMCU_IDCODE_REG & IDCODE_MASK;
 
